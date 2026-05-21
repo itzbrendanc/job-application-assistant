@@ -11,7 +11,7 @@ import sqlalchemy as sa
 from alembic import op
 
 revision = "0006"
-down_revision = "0005"
+down_revision = "0005_feedback_review_fields"
 branch_labels = None
 depends_on = None
 
@@ -70,4 +70,3 @@ def downgrade() -> None:
     op.drop_index("ix_beta_invites_email", table_name="beta_invites")
     op.drop_table("beta_invites")
     op.execute("DROP TYPE IF EXISTS beta_invite_status")
-
