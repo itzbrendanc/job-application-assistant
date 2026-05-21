@@ -79,5 +79,5 @@ def require_active_subscription_or_free_quota(
 
 
 def record_usage(db: Session, *, user_id: UUID, event_type: str, quantity: int = 1, metadata: dict | None = None) -> None:
-    db.add(UsageEvent(user_id=user_id, event_type=event_type, quantity=quantity, metadata=metadata or {}))
+    db.add(UsageEvent(user_id=user_id, event_type=event_type, quantity=quantity, metadata_json=metadata or {}))
     db.commit()
