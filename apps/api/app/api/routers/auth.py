@@ -38,7 +38,13 @@ def signup(payload: SignupRequest, request: Request, db: Session = Depends(get_d
         if not invite or invite.status != BetaInviteStatus.pending:
             raise HTTPException(status_code=403, detail="Invalid or revoked invite code")
 
-    user = User(email=payload.email, password_hash=hash_password(payload.password), auth_provider="password")
+    try:
+        pw_hash = hash_password(payload.password)
+    except ValueError as e:
+        # Should be prevented by request validation; keep a clean error for safety.
+        raise HTTPException(status_code=400, detail=str(e)) from e
+
+    user = User(email=payload.email, password_hash=pw_hash, auth_provider="password")
     db.add(user)
     db.commit()
     db.refresh(user)

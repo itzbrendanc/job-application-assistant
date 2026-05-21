@@ -12,7 +12,12 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def hash_password(password: str) -> str:
-    return pwd_context.hash(password)
+    try:
+        return pwd_context.hash(password)
+    except ValueError as e:
+        # Safety: never let raw bcrypt length errors crash the API.
+        # Callers should validate passwords before hashing; this is a backstop.
+        raise ValueError("Invalid password for hashing.") from e
 
 
 def verify_password(password: str, password_hash: str) -> bool:
@@ -40,4 +45,3 @@ def decode_access_token(token: str) -> dict[str, Any]:
         issuer=settings.jwt_issuer,
         options={"verify_signature": True, "verify_aud": True, "verify_iss": True},
     )
-
