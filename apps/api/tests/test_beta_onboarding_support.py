@@ -113,3 +113,18 @@ def test_invite_code_required_when_beta_invite_only():
     assert r2.status_code == 200
     assert "access_token" in r2.json()
 
+
+def test_signup_creates_profile_relationship():
+    # Proves mapper initialization and the User.profile <-> UserProfile.user join works.
+    from app.models.user_profile import UserProfile
+
+    app, SessionLocal = make_app()
+    client = TestClient(app)
+    r = client.post("/api/auth/signup", json={"email": "rel@example.com", "password": "password123"})
+    assert r.status_code == 200
+
+    db = SessionLocal()
+    u = db.query(User).filter(User.email == "rel@example.com").one()
+    p = db.query(UserProfile).filter(UserProfile.user_id == u.id).one()
+    assert p.user_id == u.id
+    db.close()

@@ -4,6 +4,7 @@ from datetime import date, datetime
 from uuid import UUID, uuid4
 
 from sqlalchemy import Date, DateTime, Integer, String, func
+from sqlalchemy import ForeignKey
 from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -14,7 +15,9 @@ class UserProfile(Base):
     __tablename__ = "user_profiles"
 
     id: Mapped[UUID] = mapped_column(PGUUID(as_uuid=True), primary_key=True, default=uuid4)
-    user_id: Mapped[UUID] = mapped_column(PGUUID(as_uuid=True), unique=True, index=True, nullable=False)
+    user_id: Mapped[UUID] = mapped_column(
+        PGUUID(as_uuid=True), ForeignKey("users.id"), unique=True, index=True, nullable=False
+    )
 
     full_name: Mapped[str | None] = mapped_column(String, nullable=True)
     headline: Mapped[str | None] = mapped_column(String, nullable=True)
@@ -42,4 +45,3 @@ class UserProfile(Base):
 
 
 from app.models.user import User  # noqa: E402
-
