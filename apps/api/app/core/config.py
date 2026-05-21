@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+from app.db.url import normalize_database_url
 
 
 class Settings(BaseSettings):
@@ -35,6 +38,11 @@ class Settings(BaseSettings):
 
     admin_emails: str | None = None
     beta_invite_only: bool = False
+
+    @field_validator("database_url")
+    @classmethod
+    def _normalize_db_url(cls, v: str) -> str:
+        return normalize_database_url(v)
 
 
 settings = Settings()
