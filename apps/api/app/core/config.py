@@ -11,6 +11,7 @@ class Settings(BaseSettings):
 
     app_env: str = "local"
     app_origin: str = "http://localhost:3000"
+    cors_origins: str | None = None
 
     database_url: str = "postgresql+psycopg://app:app@localhost:5432/appdb"
 

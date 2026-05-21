@@ -37,14 +37,22 @@ export async function apiFetch<T>(path: string, init: RequestInit = {}): Promise
   headers.set("Content-Type", headers.get("Content-Type") ?? "application/json");
   if (token) headers.set("Authorization", `Bearer ${token}`);
 
-  const res = await fetch(`${API_BASE}${path}`, { ...init, headers, cache: "no-store" });
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}${path}`, { ...init, headers, cache: "no-store" });
+  } catch (e) {
+    // Network/DNS/CORS failures often surface here with a generic TypeError in browsers.
+    throw new Error(
+      `Network error calling API at ${API_BASE}${path}. Check NEXT_PUBLIC_API_BASE and CORS.`
+    );
+  }
   if (!res.ok) {
     if (res.status === 401) {
       // Expired/invalid session: clear local token so the UI can recover cleanly.
       clearToken();
     }
     const text = await res.text();
-    throw new Error(`API ${res.status}: ${text}`);
+    throw new Error(`API ${res.status} from ${API_BASE}${path}: ${text}`);
   }
   return (await res.json()) as T;
 }

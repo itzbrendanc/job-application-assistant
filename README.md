@@ -220,7 +220,8 @@ Web (`apps/web`):
 
 API (`apps/api`):
 - `DATABASE_URL`
-- `APP_ORIGIN` (web origin allowed by CORS)
+- `CORS_ORIGINS` (preferred; comma-separated list of allowed web origins for CORS, e.g. Vercel prod + preview)
+- `APP_ORIGIN` (fallback if `CORS_ORIGINS` is not set)
 - `JWT_SECRET`
 - `ADMIN_EMAILS` (comma-separated list of admin user emails; required to access `/api/admin/*`)
 - `BETA_INVITE_ONLY` (when true, signup requires a valid invite code)
