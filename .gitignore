@@ -1,0 +1,25 @@
+.DS_Store
+.env
+.env.local
+.python-version
+
+# Node
+node_modules
+dist
+.next
+out
+.turbo
+.cache
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# DB
+*.sqlite3
+

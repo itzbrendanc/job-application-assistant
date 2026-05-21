@@ -1,0 +1,22 @@
+{
+  "name": "@jaa/extension",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "lint": "eslint .",
+    "test": "node --test dist/**/*.test.js"
+  },
+  "dependencies": {
+    "@jaa/shared": "0.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/chrome": "^0.0.280",
+    "@types/node": "^24.0.0",
+    "eslint": "^9.0.0",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
+  }
+}
+

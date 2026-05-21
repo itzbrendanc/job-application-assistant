@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Job Application Assistant</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: rgba(255, 255, 255, 0.06);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.72);
+        --accent: #7fe7c4;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      }
+      body {
+        margin: 0;
+        padding: 12px;
+        background: var(--bg);
+        color: var(--text);
+        width: 340px;
+      }
+      .card {
+        border: 1px solid var(--border);
+        background: var(--panel);
+        border-radius: 12px;
+        padding: 12px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.35;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(127, 231, 196, 0.35);
+        background: rgba(127, 231, 196, 0.14);
+        color: var(--text);
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .warning {
+        border: 1px dashed rgba(255, 107, 107, 0.4);
+        background: rgba(255, 107, 107, 0.08);
+        padding: 10px;
+        border-radius: 12px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div style="font-weight: 700">Job Application Assistant</div>
+      <div class="muted" style="margin-top: 6px">
+        Guardrails: never auto-submit, never bypass CAPTCHAs/logins, and only fill user-approved profile data.
+      </div>
+      <div class="warning muted">
+        Use the Side Panel for the full workflow: sign in → review suggestions → fill approved fields. Never auto-submit.
+      </div>
+      <button id="scan">Scan page fields</button>
+      <button id="fill" disabled>Fill (requires review)</button>
+      <pre id="out" class="muted" style="white-space: pre-wrap; margin: 10px 0 0"></pre>
+    </div>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

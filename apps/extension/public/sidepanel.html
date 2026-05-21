@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Job Application Assistant</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: rgba(255, 255, 255, 0.06);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.72);
+        --accent: #7fe7c4;
+        --danger: #ff6b6b;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      }
+      body {
+        margin: 0;
+        padding: 12px;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+      }
+      .card {
+        border: 1px solid var(--border);
+        background: var(--panel);
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 10px;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.35;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.25);
+        color: var(--text);
+        font: inherit;
+      }
+      button {
+        padding: 10px 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        cursor: pointer;
+      }
+      button.primary {
+        border-color: rgba(127, 231, 196, 0.35);
+        background: rgba(127, 231, 196, 0.14);
+      }
+      button.danger {
+        border-color: rgba(255, 107, 107, 0.35);
+        background: rgba(255, 107, 107, 0.12);
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .pill {
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 2px 10px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .warn {
+        border: 1px dashed rgba(255, 107, 107, 0.4);
+        background: rgba(255, 107, 107, 0.08);
+        padding: 10px;
+        border-radius: 12px;
+      }
+      .ok {
+        border: 1px dashed rgba(127, 231, 196, 0.35);
+        background: rgba(127, 231, 196, 0.08);
+        padding: 10px;
+        border-radius: 12px;
+      }
+      pre {
+        white-space: pre-wrap;
+        margin: 8px 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="row" style="justify-content: space-between">
+        <div style="font-weight: 700">Job Application Assistant</div>
+        <span class="pill" id="status">Signed out</span>
+      </div>
+      <div class="muted" style="margin-top: 6px">
+        Guardrails: never auto-submit; never bypass CAPTCHAs/logins; only use backend-approved profile facts.
+      </div>
+    </div>
+
+    <div class="card" id="authCard">
+      <div style="font-weight: 700">Sign in</div>
+      <div class="muted" style="margin-top: 6px">
+        Uses your account. Token is stored in session storage only. Invite-only beta may require an invite code.
+      </div>
+      <div class="muted" style="margin-top: 10px">API base URL</div>
+      <div style="margin-top: 8px">
+        <input id="apiBase" type="url" placeholder="http://localhost:8000" />
+      </div>
+      <div style="margin-top: 8px">
+        <input id="email" type="email" placeholder="email" />
+      </div>
+      <div style="margin-top: 8px">
+        <input id="password" type="password" placeholder="password" />
+      </div>
+      <div style="margin-top: 8px" id="inviteWrap" hidden>
+        <input id="inviteCode" type="text" placeholder="invite code (required for beta access)" />
+      </div>
+      <div class="row" style="margin-top: 10px">
+        <button class="primary" id="login">Sign in</button>
+        <button id="signup">Create account</button>
+        <button class="danger" id="logout">Sign out</button>
+      </div>
+      <pre class="muted" id="authOut"></pre>
+    </div>
+
+    <div class="card">
+      <div class="row" style="justify-content: space-between">
+        <div style="font-weight: 700">Current page</div>
+        <button id="openPanel" title="Open side panel">Open</button>
+      </div>
+      <div class="row" style="margin-top: 8px">
+        <button class="primary" id="scan">Detect job + scan fields</button>
+        <button id="suggest" disabled>Suggest answers</button>
+      </div>
+      <div class="row" style="margin-top: 8px">
+        <button class="primary" id="fill" disabled>Fill application</button>
+        <button id="record" disabled>Record application</button>
+      </div>
+      <div class="row" style="margin-top: 8px">
+        <button id="exportXlsx" disabled>Export tracker (.xlsx)</button>
+        <button id="reportIssue">Report issue</button>
+      </div>
+      <pre class="muted" id="out"></pre>
+      <div class="warn muted" id="warnBox" style="margin-top: 10px; display: none"></div>
+    </div>
+
+    <div class="card">
+      <div style="font-weight: 700">Cover letter (editable)</div>
+      <textarea id="coverLetter" rows="10" placeholder="Generate suggestions first…"></textarea>
+      <div class="muted" style="margin-top: 6px">You must review/edit before using. No fabricated experience.</div>
+    </div>
+
+    <div class="card">
+      <div style="font-weight: 700">Review answers (editable)</div>
+      <div class="muted" style="margin-top: 6px">
+        Only non-sensitive fields can be filled automatically. Sensitive/uncertain fields stay blank for you to answer.
+      </div>
+      <pre class="muted" id="answersOut"></pre>
+    </div>
+
+    <script type="module" src="sidepanel.js"></script>
+  </body>
+</html>

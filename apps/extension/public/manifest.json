@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Job Application Assistant",
+  "version": "0.0.1",
+  "description": "User-controlled job application helper. Never auto-submits forms.",
+  "permissions": ["storage", "activeTab", "scripting", "sidePanel", "downloads"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "Job Application Assistant",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

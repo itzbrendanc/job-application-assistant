@@ -1,0 +1,49 @@
+name: Deploy Web (Vercel)
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment label (staging|production)"
+        required: true
+        default: "production"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install
+        run: npm ci
+
+      - name: Build shared
+        run: npm run build -w packages/shared
+
+      - name: Build web
+        env:
+          NEXT_PUBLIC_API_BASE: ${{ secrets.NEXT_PUBLIC_API_BASE }}
+          NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
+        run: npm run build -w apps/web
+
+      - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          npm i -g vercel
+          cd apps/web
+          if [ "${{ inputs.environment }}" = "production" ]; then
+            vercel deploy --prod --token "$VERCEL_TOKEN" --yes
+          else
+            vercel deploy --token "$VERCEL_TOKEN" --yes
+          fi
+

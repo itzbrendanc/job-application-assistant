@@ -1,0 +1,17 @@
+{
+  "name": "job-application-assistant",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev -w apps/web",
+    "build:web": "npm run build -w apps/web",
+    "build:shared": "npm run build -w packages/shared",
+    "build:extension": "npm run build -w apps/extension",
+    "lint": "npm run lint -ws",
+    "test": "npm run test -ws",
+    "build": "npm run build -ws"
+  }
+}
