@@ -10,4 +10,9 @@ router = APIRouter(prefix="/api/public", tags=["public"])
 @router.get("/config")
 def public_config() -> dict:
     # Public, non-sensitive config for client UX.
-    return {"beta_invite_only": bool(settings.beta_invite_only), "app_origin": settings.app_origin}
+    return {
+        "beta_invite_only": bool(settings.beta_invite_only),
+        "app_origin": settings.app_origin,
+        "cors_origins": settings.cors_origins,
+        "allow_credentials": True,
+    }

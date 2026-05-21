@@ -19,15 +19,19 @@ def healthz_auth() -> dict:
 
 app.add_middleware(
     CORSMiddleware,
-    # CORS: use CORS_ORIGINS when provided (comma-separated), else fall back to APP_ORIGIN.
-    allow_origins=[
-        o.strip()
-        for o in (settings.cors_origins or settings.app_origin or "").split(",")
-        if o.strip()
-    ],
+    # CORS: allow both APP_ORIGIN and CORS_ORIGINS (comma-separated). This supports Vercel preview + production.
+    allow_origins=list(
+        dict.fromkeys(
+            [
+                o.strip()
+                for o in f"{settings.app_origin or ''},{settings.cors_origins or ''}".split(",")
+                if o.strip()
+            ]
+        )
+    ),
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-    allow_headers=["Authorization", "Content-Type"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(api_router)
