@@ -1,5 +1,11 @@
 export const runtime = "nodejs";
 
+function normalizeApiBase(raw: string): string {
+  const trimmed = (raw || "").trim().replace(/\/+$/, "");
+  if (trimmed.endsWith("/api")) return trimmed.slice(0, -4);
+  return trimmed;
+}
+
 export async function POST(req: Request) {
   // Public support intake for beta. Stored by the backend for admin review.
   // Guardrail: do not log message content.
@@ -15,7 +21,7 @@ export async function POST(req: Request) {
     if (subject.length < 3) return new Response("Subject too short", { status: 400 });
     if (message.length < 5) return new Response("Message too short", { status: 400 });
 
-    const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000";
+    const apiBase = normalizeApiBase(process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000");
     const res = await fetch(`${apiBase}/api/support`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -30,4 +36,3 @@ export async function POST(req: Request) {
     return new Response("Bad request", { status: 400 });
   }
 }
-

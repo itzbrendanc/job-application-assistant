@@ -1,4 +1,11 @@
-export const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000";
+function normalizeApiBase(raw: string): string {
+  const trimmed = (raw || "").trim().replace(/\/+$/, "");
+  // Common misconfig: setting NEXT_PUBLIC_API_BASE to ".../api" causes "/api/api/..." 404s.
+  if (trimmed.endsWith("/api")) return trimmed.slice(0, -4);
+  return trimmed;
+}
+
+export const API_BASE = normalizeApiBase(process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000");
 
 export function getToken(): string | null {
   if (typeof window === "undefined") return null;

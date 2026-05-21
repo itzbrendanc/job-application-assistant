@@ -1,5 +1,11 @@
 export const runtime = "nodejs";
 
+function normalizeApiBase(raw: string): string {
+  const trimmed = (raw || "").trim().replace(/\/+$/, "");
+  if (trimmed.endsWith("/api")) return trimmed.slice(0, -4);
+  return trimmed;
+}
+
 export async function POST(req: Request) {
   // Back-compat alias: forward old lead capture to the waitlist endpoint.
   try {
@@ -8,7 +14,7 @@ export async function POST(req: Request) {
     if (!email || !email.includes("@")) {
       return new Response("Invalid email", { status: 400 });
     }
-    const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000";
+    const apiBase = normalizeApiBase(process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000");
     await fetch(`${apiBase}/api/waitlist`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
