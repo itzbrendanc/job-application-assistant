@@ -2,6 +2,10 @@ alembic==1.16.1
 fastapi==0.115.6
 httpx==0.28.1
 passlib[bcrypt]==1.7.4
+# passlib 1.7.4 expects older bcrypt metadata; newer bcrypt releases can break
+# with "AttributeError: module 'bcrypt' has no attribute '__about__'".
+# Pin for production stability.
+bcrypt==4.0.1
 # Use psycopg v3 with bundled binary wheels so minimal Docker environments don't
 # need system libpq. Keep this pinned to a version with wide wheel availability.
 psycopg[binary]==3.3.4
