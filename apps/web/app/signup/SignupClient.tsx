@@ -60,7 +60,7 @@ function SignupInner() {
     <div className="container">
       <div className="nav">
         <div className="brand">
-          <Link href="/">Job Application Assistant</Link>
+          <Link href="/">Hirely</Link>
           <span className="badge">Sign up</span>
         </div>
         <div className="row">
@@ -122,4 +122,3 @@ export default function SignupClient() {
     </Suspense>
   );
 }
-

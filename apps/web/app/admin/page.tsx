@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import AdminHomeClient from "./AdminHomeClient";
 
 export const metadata = {
-  title: "Admin | Job Application Assistant",
+  title: "Admin | Hirely",
   description: "Beta admin dashboard."
 };
 
@@ -15,4 +15,3 @@ export default function AdminHomePage() {
     </Suspense>
   );
 }
-

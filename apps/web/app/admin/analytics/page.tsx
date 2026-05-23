@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import AdminAnalyticsClient from "./AdminAnalyticsClient";
 
 export const metadata = {
-  title: "Admin Analytics | Job Application Assistant",
+  title: "Admin Analytics | Hirely",
   description: "Beta analytics dashboard."
 };
 
@@ -15,4 +15,3 @@ export default function AdminAnalyticsPage() {
     </Suspense>
   );
 }
-

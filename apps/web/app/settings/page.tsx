@@ -16,7 +16,7 @@ export default function SettingsPage() {
       {loading ? <div className="card" style={{ marginTop: 14 }}>Loading…</div> : null}
       <div className="nav">
         <div className="brand">
-          <Link href="/">Job Application Assistant</Link>
+          <Link href="/">Hirely</Link>
           <span className="badge">Settings</span>
         </div>
         <div className="row">

@@ -1,11 +1,10 @@
 import SignupClient from "./SignupClient";
 
 export const metadata = {
-  title: "Sign Up | Job Application Assistant",
-  description: "Create your Job Application Assistant account."
+  title: "Sign Up | Hirely",
+  description: "Create your Hirely account."
 };
 
 export default function SignupPage() {
   return <SignupClient />;
 }
-

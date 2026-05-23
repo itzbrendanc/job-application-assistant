@@ -10,7 +10,7 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <section className="mkSection">
+    <section className="mkSection" id="how-it-works">
       <div className="mkSectionHead">
         <h2 className="mkH2">How it works</h2>
         <p className="mkMuted">A guided workflow across the web dashboard and Chrome extension.</p>
@@ -31,4 +31,3 @@ export function HowItWorks() {
     </section>
   );
 }
-

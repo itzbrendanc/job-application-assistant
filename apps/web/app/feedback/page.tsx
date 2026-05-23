@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import FeedbackClient from "./FeedbackClient";
 
 export const metadata = {
-  title: "Feedback | Job Application Assistant",
-  description: "Submit beta feedback for Job Application Assistant."
+  title: "Feedback | Hirely",
+  description: "Submit beta feedback for Hirely."
 };
 
 export const dynamic = "force-dynamic";
@@ -15,4 +15,3 @@ export default function FeedbackPage() {
     </Suspense>
   );
 }
-

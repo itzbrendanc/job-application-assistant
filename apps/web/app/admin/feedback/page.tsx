@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import AdminFeedbackClient from "./AdminFeedbackClient";
 
 export const metadata = {
-  title: "Admin Feedback | Job Application Assistant",
+  title: "Admin Feedback | Hirely",
   description: "Beta feedback inbox."
 };
 
@@ -15,4 +15,3 @@ export default function AdminFeedbackPage() {
     </Suspense>
   );
 }
-

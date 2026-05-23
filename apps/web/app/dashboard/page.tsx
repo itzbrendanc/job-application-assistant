@@ -36,7 +36,7 @@ export default function DashboardPage() {
     <div className="container">
       <div className="nav">
         <div className="brand">
-          <Link href="/">Job Application Assistant</Link>
+          <Link href="/">Hirely</Link>
           <span className="badge">Dashboard</span>
         </div>
         <div className="row">

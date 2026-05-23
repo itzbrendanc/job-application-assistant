@@ -1,8 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Job Application Assistant",
-  description: "Trustworthy, compliance-first job application assistant starter"
+  title: "Hirely",
+  description:
+    "Hirely is an AI job application copilot with review-first autofill, user-controlled submission, and trustworthy tracking."
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -12,4 +13,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-

@@ -39,7 +39,7 @@ function LoginInner() {
     <div className="container">
       <div className="nav">
         <div className="brand">
-          <Link href="/">Job Application Assistant</Link>
+          <Link href="/">Hirely</Link>
           <span className="badge">Login</span>
         </div>
         <div className="row">
@@ -93,4 +93,3 @@ export default function LoginClient() {
     </Suspense>
   );
 }
-

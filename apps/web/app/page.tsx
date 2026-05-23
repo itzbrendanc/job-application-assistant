@@ -9,7 +9,7 @@ import { SupportedSites } from "../components/marketing/SupportedSites";
 import { TrustSection } from "../components/marketing/TrustSection";
 
 export const metadata = {
-  title: "Job Application Assistant | AI Job Application Copilot",
+  title: "Hirely | AI Job Application Copilot",
   description:
     "Autofill job applications, tailor cover letters, and track every opportunity — while you stay in control."
 };

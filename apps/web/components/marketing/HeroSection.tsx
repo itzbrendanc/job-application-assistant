@@ -16,10 +16,10 @@ export function HeroSection() {
           </p>
         <div className="mkHeroCtas">
           <Link className="mkBtn mkBtnPrimary mkBtnLg" href="/signup">
-            Get Started
+            Start applying smarter
           </Link>
-            <Link className="mkBtn mkBtnGhost mkBtnLg" href="/download">
-              Install Extension
+            <Link className="mkBtn mkBtnGhost mkBtnLg" href="/#how-it-works">
+              See how it works
             </Link>
           </div>
           <div className="mkHeroBadges" aria-label="Key constraints">

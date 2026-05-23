@@ -33,10 +33,10 @@ export function CTASection() {
           </p>
           <div className="mkHeroCtas" style={{ marginTop: 12 }}>
             <Link className="mkBtn mkBtnPrimary mkBtnLg" href="/signup">
-              Start free
+              Start applying smarter
             </Link>
-            <Link className="mkBtn mkBtnGhost mkBtnLg" href="/pricing">
-              Upgrade to Pro
+            <Link className="mkBtn mkBtnGhost mkBtnLg" href="/#how-it-works">
+              See how it works
             </Link>
           </div>
         </div>

@@ -45,7 +45,7 @@ export default function ReviewClient({ applicationId }: { applicationId: string 
       {loading ? <div className="card" style={{ marginTop: 14 }}>Loading…</div> : null}
       <div className="nav">
         <div className="brand">
-          <Link href="/">Job Application Assistant</Link>
+          <Link href="/">Hirely</Link>
           <span className="badge">Review</span>
         </div>
         <div className="row">

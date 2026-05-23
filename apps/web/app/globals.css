@@ -1,11 +1,11 @@
 :root {
-  --bg: #070a14;
+  --bg: #050712;
   --panel: rgba(255, 255, 255, 0.06);
   --border: rgba(255, 255, 255, 0.12);
   --text: rgba(255, 255, 255, 0.92);
-  --muted: rgba(255, 255, 255, 0.72);
-  --accent: #88a7ff;
-  --accent2: #b48cff;
+  --muted: rgba(214, 222, 238, 0.72);
+  --accent: #6d5bff; /* electric indigo */
+  --accent2: #b14cff; /* violet */
   --teal: #7fe7c4;
   --danger: #ff6b6b;
   --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
@@ -22,10 +22,10 @@ body {
   margin: 0;
   font-family: var(--font);
   color: var(--text);
-  background: radial-gradient(900px 520px at 18% 12%, rgba(136, 167, 255, 0.26), transparent 55%),
-    radial-gradient(850px 560px at 78% 18%, rgba(180, 140, 255, 0.22), transparent 58%),
+  background: radial-gradient(900px 520px at 18% 12%, rgba(109, 91, 255, 0.26), transparent 55%),
+    radial-gradient(850px 560px at 78% 18%, rgba(177, 76, 255, 0.22), transparent 58%),
     radial-gradient(700px 520px at 58% 82%, rgba(127, 231, 196, 0.12), transparent 55%),
-    linear-gradient(180deg, #060813 0%, #0b1020 60%, #080a14 100%);
+    linear-gradient(180deg, #040611 0%, #0a0f22 60%, #050712 100%);
   min-height: 100vh;
 }
 
@@ -134,8 +134,8 @@ select {
 }
 
 .btnPrimary {
-  background: rgba(136, 167, 255, 0.16);
-  border-color: rgba(136, 167, 255, 0.35);
+  background: rgba(109, 91, 255, 0.16);
+  border-color: rgba(109, 91, 255, 0.35);
 }
 
 .btnDanger {
@@ -165,8 +165,8 @@ select {
 }
 
 .notice {
-  border: 1px dashed rgba(136, 167, 255, 0.32);
-  background: rgba(136, 167, 255, 0.08);
+  border: 1px dashed rgba(109, 91, 255, 0.32);
+  background: rgba(109, 91, 255, 0.08);
   border-radius: 14px;
   padding: 12px;
   color: rgba(255, 255, 255, 0.86);
@@ -202,12 +202,25 @@ select {
   font-weight: 800;
   letter-spacing: 0.2px;
 }
-.mkLogo {
-  width: 28px;
-  height: 28px;
-  border-radius: 9px;
-  background: linear-gradient(135deg, rgba(136, 167, 255, 0.9), rgba(180, 140, 255, 0.65));
-  box-shadow: 0 14px 40px rgba(136, 167, 255, 0.18);
+.hyBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+.hyWordmark {
+  display: grid;
+  line-height: 1.05;
+}
+.hyName {
+  font-weight: 850;
+  letter-spacing: 0.2px;
+}
+.hyTagline {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 2px;
 }
 .mkTag {
   font-size: 12px;
@@ -252,8 +265,8 @@ select {
   border-color: rgba(255, 255, 255, 0.22);
 }
 .mkBtnPrimary {
-  background: linear-gradient(135deg, rgba(136, 167, 255, 0.22), rgba(180, 140, 255, 0.16));
-  border-color: rgba(136, 167, 255, 0.38);
+  background: linear-gradient(135deg, rgba(109, 91, 255, 0.24), rgba(177, 76, 255, 0.16));
+  border-color: rgba(109, 91, 255, 0.4);
 }
 .mkBtnGhost {
   background: rgba(0, 0, 0, 0.18);
@@ -369,7 +382,7 @@ select {
 }
 .mkCardHover:hover {
   transform: translateY(-2px);
-  border-color: rgba(136, 167, 255, 0.3);
+  border-color: rgba(109, 91, 255, 0.32);
 }
 .mkIconWrap {
   width: 40px;
@@ -404,8 +417,8 @@ select {
   width: 44px;
   height: 44px;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(136, 167, 255, 0.26), rgba(180, 140, 255, 0.16));
-  border: 1px solid rgba(136, 167, 255, 0.3);
+  background: linear-gradient(135deg, rgba(109, 91, 255, 0.26), rgba(177, 76, 255, 0.16));
+  border: 1px solid rgba(109, 91, 255, 0.32);
   display: grid;
   place-items: center;
   font-weight: 800;
@@ -460,8 +473,8 @@ select {
   padding: 54px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: radial-gradient(800px 360px at 15% 50%, rgba(136, 167, 255, 0.18), transparent 60%),
-    radial-gradient(700px 360px at 85% 20%, rgba(180, 140, 255, 0.16), transparent 60%);
+  background: radial-gradient(800px 360px at 15% 50%, rgba(109, 91, 255, 0.18), transparent 60%),
+    radial-gradient(700px 360px at 85% 20%, rgba(177, 76, 255, 0.16), transparent 60%);
 }
 .mkCTAInner {
   max-width: 1100px;

@@ -5,7 +5,7 @@ import { MarketingNavbar } from "../../components/marketing/MarketingNavbar";
 import { PricingCards } from "../../components/marketing/PricingCards";
 
 export const metadata = {
-  title: "Pricing | Job Application Assistant",
+  title: "Pricing | Hirely",
   description: "Start free, then upgrade to Pro for unlimited tracker, extension autofill, cover letters, and Excel export."
 };
 

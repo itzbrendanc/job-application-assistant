@@ -5,7 +5,7 @@ export default function PrivacyPage() {
     <div className="container">
       <div className="nav">
         <div className="brand">
-          <Link href="/">Job Application Assistant</Link>
+          <Link href="/">Hirely</Link>
           <span className="badge">Privacy</span>
         </div>
         <div className="row">

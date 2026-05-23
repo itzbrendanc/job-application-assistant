@@ -35,7 +35,7 @@ export default function JobsPage() {
       {loading ? <div className="card" style={{ marginTop: 14 }}>Loading…</div> : null}
       <div className="nav">
         <div className="brand">
-          <Link href="/">Job Application Assistant</Link>
+          <Link href="/">Hirely</Link>
           <span className="badge">Jobs</span>
         </div>
         <div className="row">

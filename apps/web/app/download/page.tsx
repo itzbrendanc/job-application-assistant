@@ -7,7 +7,7 @@ import { MarketingNavbar } from "../../components/marketing/MarketingNavbar";
 import { SupportedSites } from "../../components/marketing/SupportedSites";
 
 export const metadata = {
-  title: "Download | Job Application Assistant",
+  title: "Download | Hirely",
   description:
     "Install the Chrome extension and use a review-first application workflow. User-controlled submission and no CAPTCHA bypassing."
 };
@@ -27,10 +27,10 @@ export default function DownloadPage() {
             </p>
             <div className="mkHeroCtas">
               <Link className="mkBtn mkBtnPrimary mkBtnLg" href="/pricing">
-                Start free
+                Start applying smarter
               </Link>
-              <Link className="mkBtn mkBtnGhost mkBtnLg" href="/dashboard">
-                Get Started
+              <Link className="mkBtn mkBtnGhost mkBtnLg" href="/#how-it-works">
+                See how it works
               </Link>
             </div>
             <div className="mkWarn" style={{ marginTop: 14 }}>

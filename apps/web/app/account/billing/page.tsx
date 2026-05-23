@@ -54,7 +54,7 @@ export default function BillingPage() {
       {loading ? <div className="card" style={{ marginTop: 14 }}>Loading…</div> : null}
       <div className="nav">
         <div className="brand">
-          <Link href="/">Job Application Assistant</Link>
+          <Link href="/">Hirely</Link>
           <span className="badge">Billing</span>
         </div>
         <div className="row">

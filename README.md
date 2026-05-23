@@ -1,6 +1,6 @@
-# Job Application Assistant (Starter Repo)
+# Hirely (Starter Repo)
 
-Trustworthy, compliance-first job application assistant SaaS. This repo is a runnable starter that prioritizes user control, auditability, and non-fabrication guardrails.
+Hirely is a trustworthy, compliance-first AI job application copilot. This repo is a runnable starter that prioritizes user control, auditability, and non-fabrication guardrails.
 
 ## What’s included
 - `apps/api`: FastAPI + Postgres + Alembic, core domain APIs and service skeletons
