@@ -68,3 +68,14 @@ def test_signup_password_over_72_bytes_returns_validation_error():
     too_long = "a" * 73  # 73 bytes in UTF-8
     r = client.post("/api/auth/signup", json={"email": "toolong@example.com", "password": too_long})
     assert r.status_code == 422
+
+
+def test_password_validation_allows_unicode_under_72_bytes():
+    # Two non-ASCII chars here, but still well under bcrypt's 72-byte limit.
+    app, _ = make_app()
+    client = TestClient(app)
+
+    pw = "pāsswörd123!"  # unicode, < 72 bytes
+    assert len(pw.encode("utf-8")) < 72
+    r = client.post("/api/auth/signup", json={"email": "unicode@example.com", "password": pw})
+    assert r.status_code == 200

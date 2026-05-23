@@ -13,9 +13,9 @@ class SignupRequest(BaseModel):
     def _bcrypt_safe_len(cls, v: str) -> str:
         # bcrypt only uses the first 72 bytes of the password; passlib/bcrypt raises if longer.
         # Enforce a hard limit to prevent runtime crashes and user confusion.
-        if len(v) < 8:
-            raise ValueError("Password must be at least 8 characters.")
-        if len(v.encode("utf-8")) > 72:
+        # Note: we validate the byte length (not character count) because bcrypt's limit is bytes.
+        byte_len = len(v.encode("utf-8"))
+        if byte_len > 72:
             raise ValueError("Password must be at most 72 bytes (UTF-8).")
         return v
 
