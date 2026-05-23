@@ -12,7 +12,7 @@ export function HeroSection() {
           </div>
           <h1 className="mkH1">Your AI job application copilot</h1>
           <p className="mkLead">
-            Autofill job applications, tailor cover letters, and track every opportunity while you stay in control.
+            Review-first autofill, tailored cover letters, and an application tracker that stays accurate and audit-ready.
           </p>
         <div className="mkHeroCtas">
           <Link className="mkBtn mkBtnPrimary mkBtnLg" href="/signup">
@@ -22,15 +22,18 @@ export function HeroSection() {
               See how it works
             </Link>
           </div>
-          <div className="mkHeroBadges" aria-label="Key constraints">
+          <div className="mkHeroBadges" aria-label="Core guarantees">
             <span className="mkBadge">
-              <BoltIcon /> Faster applications
+              <BoltIcon /> Review-first autofill
             </span>
             <span className="mkBadge">
-              <ShieldIcon /> No auto-submit
+              <ShieldIcon /> User-controlled submission
             </span>
             <span className="mkBadge">
-              <ShieldIcon /> No fake experience
+              <ShieldIcon /> No fabricated experience
+            </span>
+            <span className="mkBadge">
+              <ShieldIcon /> No CAPTCHA bypassing
             </span>
           </div>
         </div>

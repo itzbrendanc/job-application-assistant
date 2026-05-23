@@ -14,13 +14,13 @@ export function ProductMockup() {
               <SparkIcon />
               Extension Side Panel
             </div>
-            <Pill>Review-first</Pill>
+            <Pill>Detected on Greenhouse</Pill>
           </div>
           <div className="mkMockBody">
             <div className="mkMockRow">
               <div className="mkMockStat">
                 <div className="mkMockStatK">Match score</div>
-                <div className="mkMockStatV">86</div>
+                <div className="mkMockStatV">86%</div>
               </div>
               <div className="mkMockStat">
                 <div className="mkMockStatK">Fields detected</div>
@@ -29,21 +29,24 @@ export function ProductMockup() {
             </div>
             <div className="mkMockList">
               <div className="mkMockItem">
-                <span className="mkDot mkDotOk" /> Email <span className="mkMuted">filled</span>
+                <span className="mkDot mkDotOk" /> Email <span className="mkMuted">high confidence</span>
               </div>
               <div className="mkMockItem">
-                <span className="mkDot mkDotOk" /> Phone <span className="mkMuted">filled</span>
+                <span className="mkDot mkDotOk" /> Phone <span className="mkMuted">high confidence</span>
               </div>
               <div className="mkMockItem">
-                <span className="mkDot mkDotWarn" /> Salary expectations <span className="mkMuted">ask you</span>
+                <span className="mkDot mkDotWarn" /> Salary expectations <span className="mkMuted">asks you</span>
               </div>
               <div className="mkMockItem">
-                <span className="mkDot mkDotWarn" /> Work authorization <span className="mkMuted">ask you</span>
+                <span className="mkDot mkDotWarn" /> Work authorization <span className="mkMuted">asks you</span>
+              </div>
+              <div className="mkMockItem">
+                <span className="mkDot mkDotWarn" /> EEO questions <span className="mkMuted">never auto-answered</span>
               </div>
             </div>
             <div className="mkMockActions">
               <button className="mkBtn mkBtnPrimary" type="button">
-                Fill application
+                Fill approved fields
               </button>
               <button className="mkBtn mkBtnGhost" type="button">
                 Record to tracker
@@ -74,7 +77,7 @@ export function ProductMockup() {
                 <div role="cell">ExampleCo</div>
                 <div role="cell">Backend Engineer</div>
                 <div role="cell">
-                  <span className="mkChip">in_progress</span>
+                  <span className="mkChip">applied</span>
                 </div>
               </div>
               <div className="mkMockTr" role="row">
@@ -90,14 +93,14 @@ export function ProductMockup() {
                 <DocIcon />
                 <div>
                   <div className="mkMockMiniT">Cover letter</div>
-                  <div className="mkMuted">Editable, sourced</div>
+                  <div className="mkMuted">Editable, sourced to your facts</div>
                 </div>
               </div>
               <div className="mkMockMini">
                 <ShieldIcon />
                 <div>
                   <div className="mkMockMiniT">Audit log</div>
-                  <div className="mkMuted">Every action</div>
+                  <div className="mkMuted">Every sensitive action</div>
                 </div>
               </div>
             </div>
@@ -110,4 +113,3 @@ export function ProductMockup() {
     </div>
   );
 }
-

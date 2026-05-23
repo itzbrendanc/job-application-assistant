@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { apiFetch, publicFetch, setToken } from "../lib/api";
 import { track } from "../../lib/analytics";
+import { AuthShell } from "../../components/auth/AuthShell";
 
 type PublicConfig = { beta_invite_only: boolean };
 
@@ -57,61 +58,54 @@ function SignupInner() {
   }
 
   return (
-    <div className="container">
-      <div className="nav">
-        <div className="brand">
-          <Link href="/">Hirely</Link>
-          <span className="badge">Sign up</span>
-        </div>
-        <div className="row">
-          <Link href="/pricing">Pricing</Link>
-          <Link href="/download">Download</Link>
-        </div>
+    <AuthShell
+      titleBadge="Sign up"
+      title="Start applying smarter"
+      subtitle="Create an account to unlock the extension workflow and dashboard tracker."
+    >
+      <h1 className="h1" style={{ marginTop: 0 }}>
+        Create your account
+      </h1>
+      <p className="muted">Review-first autofill, user-controlled submission, and audited tracking.</p>
+
+      <div className="field">
+        <label>Email</label>
+        <input value={email} onChange={(e) => setEmail(e.target.value)} inputMode="email" autoComplete="email" />
+      </div>
+      <div className="field">
+        <label>Password</label>
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          autoComplete="new-password"
+        />
+        <div className="muted">Minimum 8 characters.</div>
       </div>
 
-      <div className="card" style={{ marginTop: 14, maxWidth: 560 }}>
-        <h1 className="h1" style={{ marginTop: 0 }}>
-          Create your account
-        </h1>
-        <p className="muted">
-          Built for credibility: review-first autofill, user-controlled submission, and no fabricated experience.
-        </p>
-
+      {cfg?.beta_invite_only ? (
         <div className="field">
-          <label>Email</label>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} inputMode="email" autoComplete="email" />
+          <label>Invite code</label>
+          <input value={inviteCode} onChange={(e) => setInviteCode(e.target.value)} placeholder="Required for beta access" />
+          <div className="muted">Invite-only beta is enabled.</div>
         </div>
-        <div className="field">
-          <label>Password</label>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            autoComplete="new-password"
-          />
-          <div className="muted">Minimum 8 characters.</div>
-        </div>
+      ) : null}
 
-        {cfg?.beta_invite_only ? (
-          <div className="field">
-            <label>Invite code</label>
-            <input value={inviteCode} onChange={(e) => setInviteCode(e.target.value)} placeholder="Required for beta access" />
-            <div className="muted">Invite-only beta is enabled.</div>
-          </div>
-        ) : null}
+      {error ? <div className="notice danger">{error}</div> : null}
 
-        {error ? <div className="notice danger">{error}</div> : null}
-
-        <div className="row" style={{ marginTop: 10 }}>
-          <button className="btn btnPrimary" onClick={submit} disabled={!email || !password || status === "loading" || (cfg?.beta_invite_only && !inviteCode)}>
-            {status === "loading" ? "Creating…" : "Create account"}
-          </button>
-          <Link className="btn" href={`/login${next ? `?next=${encodeURIComponent(next)}` : ""}`}>
-            Sign in
-          </Link>
-        </div>
+      <div className="row" style={{ marginTop: 10 }}>
+        <button
+          className="btn btnPrimary"
+          onClick={submit}
+          disabled={!email || !password || status === "loading" || (cfg?.beta_invite_only && !inviteCode)}
+        >
+          {status === "loading" ? "Creating…" : "Create account"}
+        </button>
+        <Link className="btn" href={`/login${next ? `?next=${encodeURIComponent(next)}` : ""}`}>
+          Sign in
+        </Link>
       </div>
-    </div>
+    </AuthShell>
   );
 }
 

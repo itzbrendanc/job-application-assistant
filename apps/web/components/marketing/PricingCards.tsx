@@ -12,7 +12,8 @@ function Card({
   bullets,
   ctaLabel,
   onCta,
-  subtle
+  subtle,
+  featured
 }: {
   title: string;
   price: string;
@@ -21,9 +22,10 @@ function Card({
   ctaLabel: string;
   onCta?: () => void;
   subtle?: boolean;
+  featured?: boolean;
 }) {
   return (
-    <div className={`mkPriceCard ${subtle ? "mkPriceCardSubtle" : ""}`}>
+    <div className={`mkPriceCard ${subtle ? "mkPriceCardSubtle" : ""} ${featured ? "mkPriceCardFeatured" : ""}`}>
       <div className="mkPriceHead">
         <div className="mkPriceTitle">
           {title} {badge ? <span className="mkBest">{badge}</span> : null}
@@ -100,7 +102,7 @@ export function PricingCards() {
           Pricing
         </h1>
         <p className="mkMuted">
-          Built as a copilot: you review and personally submit. Pro unlocks unlimited usage.
+          Built as a copilot: review-first autofill with user-controlled submission. Pro unlocks unlimited usage.
         </p>
         {status ? <div className="mkMuted">Current plan: {status.plan}</div> : null}
         {error ? <div className="mkWarn">{error}</div> : null}
@@ -111,23 +113,31 @@ export function PricingCards() {
           title="Free"
           price="10 applications / month"
           bullets={["Basic tracker", "Limited autofill workflow", "Upgrade any time"]}
-          ctaLabel="Start free"
+          ctaLabel="Start applying smarter"
+          subtle
         />
         <Card
           title="Pro Monthly"
           price="Unlimited"
-          bullets={["Unlimited applications", "Extension autofill (approved fields)", "Tailored cover letters", "Excel export", "Application dashboard"]}
+          badge="Most popular"
+          bullets={[
+            "Unlimited applications",
+            "Extension autofill (approved fields)",
+            "Tailored cover letters (editable)",
+            "Excel export",
+            "Application dashboard"
+          ]}
           ctaLabel={busy === "pro_monthly" ? "Redirecting…" : "Upgrade to Pro Monthly"}
           onCta={() => checkout("pro_monthly")}
+          featured
         />
         <Card
           title="Pro Annual"
           price="Best value"
           badge="Best value"
-          bullets={["Everything in Pro", "Discounted yearly pricing", "Priority roadmap influence"]}
+          bullets={["Everything in Pro", "Discounted yearly pricing", "Best for active job searches"]}
           ctaLabel={busy === "pro_annual" ? "Redirecting…" : "Upgrade to Pro Annual"}
           onCta={() => checkout("pro_annual")}
-          subtle
         />
       </div>
     </section>

@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense, useState } from "react";
 import { apiFetch, setToken } from "../lib/api";
 import { track } from "../../lib/analytics";
+import { AuthShell } from "../../components/auth/AuthShell";
+import Link from "next/link";
 
 function LoginInner() {
   const router = useRouter();
@@ -36,52 +37,41 @@ function LoginInner() {
   }
 
   return (
-    <div className="container">
-      <div className="nav">
-        <div className="brand">
-          <Link href="/">Hirely</Link>
-          <span className="badge">Login</span>
-        </div>
-        <div className="row">
-          <Link href="/pricing">Pricing</Link>
-          <Link href="/download">Download</Link>
-        </div>
+    <AuthShell
+      titleBadge="Login"
+      title="Welcome back"
+      subtitle="Sign in to continue your Hirely workspace."
+    >
+      <h1 className="h1" style={{ marginTop: 0 }}>
+        Sign in
+      </h1>
+      <p className="muted">Continue with your existing account.</p>
+
+      <div className="field">
+        <label>Email</label>
+        <input value={email} onChange={(e) => setEmail(e.target.value)} inputMode="email" autoComplete="email" />
+      </div>
+      <div className="field">
+        <label>Password</label>
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          autoComplete="current-password"
+        />
       </div>
 
-      <div className="card" style={{ marginTop: 14, maxWidth: 560 }}>
-        <h1 className="h1" style={{ marginTop: 0 }}>
-          Sign in
-        </h1>
-        <p className="muted">
-          Review-first autofill and user-controlled submission. No auto-submit, no fabricated experience.
-        </p>
+      {error ? <div className="notice danger">{error}</div> : null}
 
-        <div className="field">
-          <label>Email</label>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} inputMode="email" autoComplete="email" />
-        </div>
-        <div className="field">
-          <label>Password</label>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            autoComplete="current-password"
-          />
-        </div>
-
-        {error ? <div className="notice danger">{error}</div> : null}
-
-        <div className="row" style={{ marginTop: 10 }}>
-          <button className="btn btnPrimary" onClick={submit} disabled={!email || !password || status === "loading"}>
-            {status === "loading" ? "Signing in…" : "Sign in"}
-          </button>
-          <Link className="btn" href={`/signup${next ? `?next=${encodeURIComponent(next)}` : ""}`}>
-            Create account
-          </Link>
-        </div>
+      <div className="row" style={{ marginTop: 10 }}>
+        <button className="btn btnPrimary" onClick={submit} disabled={!email || !password || status === "loading"}>
+          {status === "loading" ? "Signing in…" : "Sign in"}
+        </button>
+        <Link className="btn" href={`/signup${next ? `?next=${encodeURIComponent(next)}` : ""}`}>
+          Create account
+        </Link>
       </div>
-    </div>
+    </AuthShell>
   );
 }
 
