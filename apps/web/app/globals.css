@@ -497,6 +497,7 @@ select {
     radial-gradient(800px 360px at 86% 20%, rgba(177, 76, 255, 0.16), transparent 60%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.06));
 }
+
 .mkCTAInner {
   max-width: 1100px;
   margin: 0 auto;

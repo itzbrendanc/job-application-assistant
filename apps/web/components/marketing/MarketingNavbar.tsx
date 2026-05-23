@@ -10,6 +10,7 @@ export function MarketingNavbar() {
           <span className="mkTag">Copilot</span>
         </div>
         <nav className="mkNavLinks" aria-label="Primary">
+          <Link href="/job-sites">Job Sites</Link>
           <Link href="/pricing">Pricing</Link>
           <Link href="/download">Download</Link>
           <Link href="/privacy">Privacy</Link>

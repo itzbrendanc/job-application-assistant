@@ -41,6 +41,7 @@ export default function DashboardPage() {
         </div>
         <div className="row">
           <Link href="/onboarding">Onboarding</Link>
+          <Link href="/job-sites">Job Sites</Link>
           <Link href="/jobs">Jobs</Link>
           <Link href="/applications">Applications</Link>
           <Link href="/settings">Settings</Link>
