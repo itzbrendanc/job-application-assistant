@@ -12,12 +12,19 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def hash_password(password: str) -> str:
+    # bcrypt only considers the first 72 bytes; passlib/bcrypt can raise if longer.
+    if len(password.encode("utf-8")) > 72:
+        raise ValueError("Password must be at most 72 bytes (UTF-8).")
+
     try:
         return pwd_context.hash(password)
     except ValueError as e:
-        # Safety: never let raw bcrypt length errors crash the API.
-        # Callers should validate passwords before hashing; this is a backstop.
-        raise ValueError("Invalid password for hashing.") from e
+        msg = str(e).lower()
+        # Only convert the known bcrypt length error into a clean message.
+        if "72" in msg and "password" in msg and "long" in msg:
+            raise ValueError("Password must be at most 72 bytes (UTF-8).") from e
+        # Do not mask unrelated errors (e.g., missing backend) as a password issue.
+        raise
 
 
 def verify_password(password: str, password_hash: str) -> bool:

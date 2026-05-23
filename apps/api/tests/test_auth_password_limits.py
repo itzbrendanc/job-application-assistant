@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from app.api.routers.auth import router as auth_router
-from app.core.security import verify_password
+from app.core.security import hash_password, verify_password
 from app.db.base import Base
 from app.db.session import get_db
 from app.models.user import User
@@ -47,6 +47,19 @@ def test_normal_signup_works_and_no_plaintext_password_stored():
     assert verify_password(raw, u.password_hash) is True
     db.close()
 
+def test_hash_and_verify_work_for_normal_password():
+    pw = "TestPassword123!"
+    h = hash_password(pw)
+    assert isinstance(h, str) and h
+    assert verify_password(pw, h) is True
+
+
+def test_signup_with_test_password_works():
+    app, _ = make_app()
+    client = TestClient(app)
+    r = client.post("/api/auth/signup", json={"email": "ok@example.com", "password": "TestPassword123!"})
+    assert r.status_code == 200
+
 
 def test_signup_password_over_72_bytes_returns_validation_error():
     app, _ = make_app()
@@ -55,4 +68,3 @@ def test_signup_password_over_72_bytes_returns_validation_error():
     too_long = "a" * 73  # 73 bytes in UTF-8
     r = client.post("/api/auth/signup", json={"email": "toolong@example.com", "password": too_long})
     assert r.status_code == 422
-
