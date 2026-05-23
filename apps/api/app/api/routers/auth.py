@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import logging
+import os
 from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 
@@ -14,6 +16,8 @@ from app.services.audit import log_event
 from app.core.rate_limit import Limit, rate_limit
 from app.core.config import settings
 from datetime import datetime, timezone
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
@@ -37,6 +41,10 @@ def signup(payload: SignupRequest, request: Request, db: Session = Depends(get_d
         )
         if not invite or invite.status != BetaInviteStatus.pending:
             raise HTTPException(status_code=403, detail="Invalid or revoked invite code")
+
+    # Temporary debug: log only the UTF-8 byte length, never the password.
+    if os.getenv("AUTH_DEBUG_PASSWORD_LEN", "").lower() in {"1", "true", "yes"}:
+        logger.info("auth.signup route password utf8_byte_len=%s", len(payload.password.encode("utf-8")))
 
     try:
         pw_hash = hash_password(payload.password)

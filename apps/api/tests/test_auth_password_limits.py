@@ -49,6 +49,7 @@ def test_normal_signup_works_and_no_plaintext_password_stored():
 
 def test_hash_and_verify_work_for_normal_password():
     pw = "TestPassword123!"
+    assert len(pw.encode("utf-8")) == 16
     h = hash_password(pw)
     assert isinstance(h, str) and h
     assert verify_password(pw, h) is True
