@@ -111,14 +111,14 @@ export function PricingCards() {
       <div className="mkPriceGrid">
         <Card
           title="Free"
-          price="10 applications / month"
+          price="$0 · 10 applications / month"
           bullets={["Basic tracker", "Limited autofill workflow", "Upgrade any time"]}
           ctaLabel="Start applying smarter"
           subtle
         />
         <Card
           title="Pro Monthly"
-          price="Unlimited"
+          price="$4.99 / month"
           badge="Most popular"
           bullets={[
             "Unlimited applications",
@@ -133,7 +133,7 @@ export function PricingCards() {
         />
         <Card
           title="Pro Annual"
-          price="Best value"
+          price="$29.99 / year"
           badge="Best value"
           bullets={["Everything in Pro", "Discounted yearly pricing", "Best for active job searches"]}
           ctaLabel={busy === "pro_annual" ? "Redirecting…" : "Upgrade to Pro Annual"}
