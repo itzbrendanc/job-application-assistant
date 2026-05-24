@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { PlatformLogo } from "./platformLogos";
 
 type Category = "job_board" | "ats" | "university";
 type Support = "full" | "partial" | "experimental";
@@ -210,10 +211,14 @@ export function JobSitesHubClient() {
         {filtered.map((s) => {
           const tone = supportTone(s.support);
           return (
-            <div key={s.id} className="mkCard mkCardHover aiCard">
-              <div style={{ display: "flex", justifyContent: "space-between", gap: 10, alignItems: "start" }}>
+            <div key={s.id} className="mkCard mkCardHover aiCard jsCard">
+              <div className="jsLogoWrap" aria-hidden>
+                <PlatformLogo id={s.id as any} size={40} />
+              </div>
+
+              <div className="jsHead">
                 <div style={{ display: "grid", gap: 6 }}>
-                  <div style={{ fontWeight: 860, letterSpacing: -0.2 }}>{s.name}</div>
+                  <div className="jsName">{s.name}</div>
                   <div className="mkMuted">{s.description}</div>
                 </div>
                 <span className="mkBest" title={tone.detail}>
@@ -245,4 +250,3 @@ export function JobSitesHubClient() {
     </section>
   );
 }
-
