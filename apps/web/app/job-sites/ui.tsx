@@ -156,21 +156,26 @@ export function JobSitesHubClient() {
   }, [filter, q]);
 
   return (
-    <section className="mkSection">
-      <div className="mkSectionHead">
-        <h2 className="mkH2">Platforms</h2>
-        <p className="mkMuted">Pick a site, sign in there directly, then use the extension on the application form.</p>
-      </div>
+    <section className="jsPage">
+      <div className="jsInner">
+        <div className="jsTop">
+          <div className="jsHero">
+            <div className="jsKicker">JOB SITES</div>
+            <h1 className="jsH1">
+              Access top job platforms <span className="aiGradientText">in one place</span>
+            </h1>
+            <p className="jsLead">
+              Open your favorite job sites and use the Hirely extension to autofill forms — always review first.
+            </p>
+          </div>
 
-      <div className="mkCard aiCard" style={{ marginBottom: 12 }}>
-        <div style={{ display: "grid", gap: 12 }}>
-          <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap", justifyContent: "space-between" }}>
-            <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+          <div className="jsControls">
+            <div className="jsPillBar" role="tablist" aria-label="Platform filters">
               {FILTERS.map((f) => (
                 <button
                   key={f.id}
                   type="button"
-                  className={`aiButton ${filter === f.id ? "aiButtonPrimary" : ""}`}
+                  className={`jsPill ${filter === f.id ? "jsPillActive" : ""}`}
                   onClick={() => setFilter(f.id)}
                   aria-pressed={filter === f.id}
                   title={f.hint}
@@ -180,9 +185,12 @@ export function JobSitesHubClient() {
               ))}
             </div>
 
-            <div style={{ minWidth: 240, width: "min(420px, 100%)" }}>
+            <div className="jsSearch">
+              <span className="jsSearchIcon" aria-hidden>
+                <SearchIcon />
+              </span>
               <input
-                className="aiInput"
+                className="jsSearchInput"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="Search platforms…"
@@ -190,16 +198,10 @@ export function JobSitesHubClient() {
               />
             </div>
           </div>
-
-          <div className="mkMuted">
-            Extension workflow: open the site, navigate to an application form, then use Hirely’s side panel to scan fields,
-            review suggestions, and fill approved values. Submission stays user-controlled.
-          </div>
         </div>
-      </div>
 
       {filtered.length === 0 ? (
-        <div className="mkCard aiCard">
+        <div className="mkCard aiCard jsEmpty">
           <div style={{ fontWeight: 860 }}>No matches</div>
           <div className="mkMuted" style={{ marginTop: 6 }}>
             Try clearing the search or switching filters.
@@ -207,46 +209,85 @@ export function JobSitesHubClient() {
         </div>
       ) : null}
 
-      <div className="mkGrid3" aria-label="Job sites grid">
+      <div className="jsGrid" aria-label="Job sites grid">
         {filtered.map((s) => {
           const tone = supportTone(s.support);
           return (
-            <div key={s.id} className="mkCard mkCardHover aiCard jsCard">
-              <div className="jsLogoWrap" aria-hidden>
-                <PlatformLogo id={s.id as any} size={40} />
+            <div key={s.id} className="jsPlatformCard">
+              <div className="jsSpark" aria-hidden>
+                <Sparkle />
               </div>
 
-              <div className="jsHead">
-                <div style={{ display: "grid", gap: 6 }}>
-                  <div className="jsName">{s.name}</div>
-                  <div className="mkMuted">{s.description}</div>
+              <div className="jsCardTop">
+                <div className="jsLogoBadge" aria-hidden>
+                  <PlatformLogo id={s.id as any} size={44} variant="brand" />
                 </div>
-                <span className="mkBest" title={tone.detail}>
-                  {tone.badge}
-                </span>
+                <div style={{ minWidth: 0 }}>
+                  <div className="jsPlatformName">{s.name.replace(" Jobs", "")}</div>
+                  <div className={`jsSupport ${s.support === "full" ? "jsSupportFull" : s.support === "partial" ? "jsSupportPartial" : "jsSupportExp"}`}>
+                    {tone.badge} support
+                  </div>
+                </div>
               </div>
 
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
-                <Chip>{categoryLabel(s.category)}</Chip>
-                <Chip>Support: {supportLabel(s.support)}</Chip>
-              </div>
+              <div className="jsDesc">{s.description}</div>
 
-              <div className="mkMuted" style={{ marginTop: 12 }}>
-                <b>Use extension here:</b> {s.extensionNote}
-              </div>
-
-              <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 10 }}>
-                <a className="aiButton aiButtonPrimary" href={s.url} target="_blank" rel="noreferrer">
-                  Open site
-                </a>
-                <Link className="aiButton" href="/download">
-                  Install extension
-                </Link>
-              </div>
+              <a className="jsOpenBtn" href={s.url} target="_blank" rel="noreferrer">
+                Open {s.name.replace(" Jobs", "")} <ExternalLinkIcon />
+              </a>
             </div>
           );
         })}
       </div>
+
+      <div className="jsNote">
+        <div className="jsNoteTitle">Extension workflow</div>
+        <div className="jsNoteBody">
+          Open a platform, sign in there directly, then use Hirely’s side panel to scan fields, review suggestions, and fill
+          approved values. Submission stays user-controlled. Hirely does not bypass CAPTCHAs or security checks.
+        </div>
+      </div>
+      </div>
     </section>
+  );
+}
+
+function SearchIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M10.8 18.4a7.6 7.6 0 1 1 0-15.2 7.6 7.6 0 0 1 0 15.2Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <path d="M16.6 16.6 21 21" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function ExternalLinkIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M14 5h5v5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10 14 19 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <path
+        d="M19 14v5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function Sparkle() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M12 2l1.2 5.1L18 8.4l-4.8 1.3L12 15l-1.2-5.3L6 8.4l4.8-1.3L12 2Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+    </svg>
   );
 }
