@@ -46,9 +46,34 @@ export function AppNavbar({ active }: { active: NavId }) {
             </span>
             Install Extension
           </Link>
+
+          <button className="appNavIconBtn" type="button" aria-label="Notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path
+                d="M18 9a6 6 0 1 0-12 0c0 7-3 7-3 7h18s-3 0-3-7Z"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M13.7 20a2 2 0 0 1-3.4 0"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+
+          <button className="appNavUser" type="button" aria-label="User menu">
+            <span className="appNavUserAvatar" aria-hidden>
+              BC
+            </span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M7 10l5 5 5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
+          </button>
         </div>
       </div>
     </header>
   );
 }
-

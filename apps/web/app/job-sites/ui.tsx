@@ -115,12 +115,6 @@ function categoryLabel(c: Category): string {
   return "Job board";
 }
 
-function supportLabel(s: Support): string {
-  if (s === "full") return "Full";
-  if (s === "partial") return "Partial";
-  return "Experimental";
-}
-
 function supportTone(s: Support): { badge: string; detail: string } {
   if (s === "full") return { badge: "Full", detail: "Best supported" };
   if (s === "partial") return { badge: "Partial", detail: "Common flows" };
@@ -133,10 +127,6 @@ function matchesFilter(site: (typeof SITES)[number], filter: Filter): boolean {
   if (filter === "ats") return site.category === "ats";
   if (filter === "boards") return site.category === "job_board";
   return site.category === "university";
-}
-
-function Chip({ children }: { children: React.ReactNode }) {
-  return <span className="mkChip">{children}</span>;
 }
 
 export function JobSitesHubClient() {

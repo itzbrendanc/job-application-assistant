@@ -138,7 +138,7 @@ a {
 .jsPage {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 26px 18px 60px;
+  padding: 26px 18px 40px;
 }
 .jsInner {
   display: grid;
@@ -190,7 +190,7 @@ a {
   padding: 10px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(0, 0, 0, 0.22);
+  background: rgba(0, 0, 0, 0.26);
   box-shadow: var(--shadowSm);
 }
 @media (max-width: 520px) {
@@ -221,7 +221,7 @@ a {
   position: relative;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(0, 0, 0, 0.22);
+  background: rgba(0, 0, 0, 0.26);
   box-shadow: var(--shadowSm);
   overflow: hidden;
 }
@@ -250,7 +250,7 @@ a {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1100px) {
   .jsGrid {
     grid-template-columns: repeat(5, 1fr);
   }
@@ -328,8 +328,8 @@ a {
   background: rgba(109, 91, 255, 0.16);
 }
 .jsSupportPartial {
-  border-color: rgba(102, 227, 255, 0.32);
-  background: rgba(102, 227, 255, 0.10);
+  border-color: rgba(59, 130, 246, 0.36);
+  background: rgba(59, 130, 246, 0.12);
 }
 .jsSupportExp {
   border-color: rgba(255, 255, 255, 0.14);
@@ -382,44 +382,59 @@ a {
   margin-top: 12px;
 }
 .jsTrustStrip {
-  display: grid;
-  gap: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background:
+    radial-gradient(700px 240px at 14% 50%, rgba(109, 91, 255, 0.16), transparent 62%),
+    radial-gradient(700px 240px at 80% 20%, rgba(102, 227, 255, 0.10), transparent 62%),
+    rgba(0, 0, 0, 0.22);
+  box-shadow: var(--shadow);
   padding: 18px;
+  display: grid;
+  gap: 18px;
 }
 @media (min-width: 980px) {
   .jsTrustStrip {
-    grid-template-columns: 1.35fr 0.65fr;
+    grid-template-columns: 72px 1fr 260px;
     align-items: center;
   }
+}
+.jsTrustHuge {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.18);
+  color: rgba(109, 91, 255, 0.92);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 28px 90px rgba(109, 91, 255, 0.12);
+}
+.jsTrustMid {
+  min-width: 0;
 }
 .jsTrustTitle {
   font-weight: 880;
   letter-spacing: -0.2px;
   font-size: 16px;
 }
-.jsTrustItems {
+.jsTrustRow {
   margin-top: 12px;
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 @media (min-width: 980px) {
-  .jsTrustItems {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
+  .jsTrustRow {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 .jsTrustItem {
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  gap: 10px;
-  align-items: start;
-  padding: 10px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(0, 0, 0, 0.16);
+  padding-right: 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
-.jsTrustIcon {
-  color: rgba(109, 91, 255, 0.85);
+.jsTrustItem:last-child {
+  border-right: none;
+  padding-right: 0;
 }
 .jsTrustItemT {
   font-weight: 840;
@@ -437,7 +452,7 @@ a {
   gap: 12px;
   justify-items: start;
 }
-.jsTrustCta {
+.jsTrustRight .aiButton {
   width: 100%;
 }
 .jsTrustLink {
@@ -504,6 +519,8 @@ a {
 .appNavRight {
   display: flex;
   justify-content: flex-end;
+  gap: 12px;
+  align-items: center;
 }
 .appNavCta {
   display: inline-flex;
@@ -523,6 +540,52 @@ a {
 }
 .appNavCtaIcon {
   color: rgba(177, 76, 255, 0.95);
+}
+.appNavIconBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.18);
+  color: rgba(255, 255, 255, 0.86);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadowSm);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+.appNavIconBtn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(109, 91, 255, 0.34);
+}
+.appNavUser {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px 6px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.18);
+  color: rgba(255, 255, 255, 0.86);
+  cursor: pointer;
+  box-shadow: var(--shadowSm);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+.appNavUser:hover {
+  transform: translateY(-1px);
+  border-color: rgba(109, 91, 255, 0.34);
+}
+.appNavUserAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 860;
+  color: rgba(255, 255, 255, 0.92);
+  background: linear-gradient(135deg, rgba(109, 91, 255, 0.8), rgba(177, 76, 255, 0.5));
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .container {
