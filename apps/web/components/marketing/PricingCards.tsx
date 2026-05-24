@@ -42,11 +42,11 @@ function Card({
       </div>
       <div style={{ marginTop: 14 }}>
         {onCta ? (
-          <button className="mkBtn mkBtnPrimary mkBtnLg" type="button" onClick={onCta}>
+          <button className="aiButton aiButtonPrimary mkBtnLg" type="button" onClick={onCta}>
             {ctaLabel}
           </button>
         ) : (
-          <Link className="mkBtn mkBtnPrimary mkBtnLg" href="/dashboard">
+          <Link className="aiButton aiButtonPrimary mkBtnLg" href="/dashboard">
             {ctaLabel}
           </Link>
         )}

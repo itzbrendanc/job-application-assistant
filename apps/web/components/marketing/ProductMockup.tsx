@@ -6,9 +6,9 @@ function Pill({ children }: { children: React.ReactNode }) {
 
 export function ProductMockup() {
   return (
-    <div className="mkMockWrap" aria-label="Product mockups">
+    <div className="mkMockWrap aiGlow" aria-label="Product mockups">
       <div className="mkMockGrid">
-        <div className="mkMockCard">
+        <div className="mkMockCard aiCard">
           <div className="mkMockHead">
             <div className="mkMockTitle">
               <SparkIcon />
@@ -45,10 +45,10 @@ export function ProductMockup() {
               </div>
             </div>
             <div className="mkMockActions">
-              <button className="mkBtn mkBtnPrimary" type="button">
+              <button className="aiButton aiButtonPrimary" type="button">
                 Fill approved fields
               </button>
-              <button className="mkBtn mkBtnGhost" type="button">
+              <button className="aiButton" type="button">
                 Record to tracker
               </button>
             </div>
@@ -58,7 +58,7 @@ export function ProductMockup() {
           </div>
         </div>
 
-        <div className="mkMockCard">
+        <div className="mkMockCard aiCard">
           <div className="mkMockHead">
             <div className="mkMockTitle">
               <ChartIcon />

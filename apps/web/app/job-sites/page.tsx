@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CTASection } from "../../components/marketing/CTASection";
 import { Footer } from "../../components/marketing/Footer";
 import { MarketingNavbar } from "../../components/marketing/MarketingNavbar";
+import { JobSitesHubClient } from "./ui";
 
 export const metadata = {
   title: "Job Sites | Hirely",
@@ -174,90 +175,10 @@ export default function JobSitesPage() {
           </div>
         </section>
 
-        <JobSitesClient />
+        <JobSitesHubClient />
         <CTASection />
       </main>
       <Footer />
     </>
   );
 }
-
-function Chip({ children }: { children: React.ReactNode }) {
-  return <span className="mkChip">{children}</span>;
-}
-
-function StatusPill({ support }: { support: Support }) {
-  const { badge } = supportMeta(support);
-  return <span className="mkBest">{badge}</span>;
-}
-
-function JobSitesClient() {
-  // keep this server component simple: render filters via anchors + query param
-  // (no JS required for the MVP hub page).
-  return (
-    <section className="mkSection">
-      <div className="mkSectionHead">
-        <h2 className="mkH2">Platforms</h2>
-        <p className="mkMuted">Pick a site, sign in there directly, then use the extension on the application form.</p>
-      </div>
-
-      <div className="mkCard" style={{ marginBottom: 12 }}>
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-          <div className="mkMuted" style={{ marginRight: 6 }}>
-            Filter:
-          </div>
-          {FILTERS.map((f) => (
-            <Link key={f.id} className="mkBtn mkBtnGhost" href={`/job-sites?filter=${f.id}`}>
-              {f.label}
-            </Link>
-          ))}
-        </div>
-        <div className="mkMuted" style={{ marginTop: 10 }}>
-          Tip: “Best supported” focuses on ATS forms where the extension’s adapters are strongest. Job boards often vary
-          by page and may be partial/experimental.
-        </div>
-      </div>
-
-      <SiteGrid />
-    </section>
-  );
-}
-
-function SiteGrid() {
-  // Use query param filtering without client JS by reading from `window` isn’t possible here.
-  // So we render all cards and rely on the user’s scan; filters are still valuable for future client enhancement.
-  return (
-    <div className="mkGrid3" aria-label="Job sites grid">
-      {SITES.map((s) => (
-        <div key={s.id} className="mkCard mkCardHover">
-          <div style={{ display: "flex", justifyContent: "space-between", gap: 10, alignItems: "start" }}>
-            <div style={{ display: "grid", gap: 6 }}>
-              <div style={{ fontWeight: 860, letterSpacing: -0.2 }}>{s.name}</div>
-              <div className="mkMuted">{s.description}</div>
-            </div>
-            <StatusPill support={s.support} />
-          </div>
-
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
-            <Chip>{categoryLabel(s.category)}</Chip>
-            <Chip>Support: {supportLabel(s.support)}</Chip>
-          </div>
-
-          <div className="mkMuted" style={{ marginTop: 12 }}>
-            <b>Use extension here:</b> {s.extensionNote}
-          </div>
-
-          <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 10 }}>
-            <a className="mkBtn mkBtnPrimary" href={s.url} target="_blank" rel="noreferrer">
-              Open site
-            </a>
-            <Link className="mkBtn mkBtnGhost" href="/download">
-              Install extension
-            </Link>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-

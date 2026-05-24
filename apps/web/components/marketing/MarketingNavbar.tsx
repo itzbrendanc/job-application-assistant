@@ -17,10 +17,10 @@ export function MarketingNavbar() {
           <Link href="/terms">Terms</Link>
         </nav>
         <div className="mkNavCtas">
-          <Link className="mkBtn mkBtnGhost" href="/#how-it-works">
+          <Link className="aiButton" href="/#how-it-works">
             See how it works
           </Link>
-          <Link className="mkBtn mkBtnPrimary" href="/signup">
+          <Link className="aiButton aiButtonPrimary" href="/signup">
             Start applying smarter
           </Link>
         </div>

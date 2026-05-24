@@ -10,15 +10,17 @@ export function HeroSection() {
           <div className="mkEyebrow">
             <ShieldIcon /> Trustworthy by design
           </div>
-          <h1 className="mkH1">Your AI job application copilot</h1>
+          <h1 className="mkH1">
+            Your <span className="aiGradientText">AI job application</span> copilot
+          </h1>
           <p className="mkLead">
             Review-first autofill, tailored cover letters, and an application tracker that stays accurate and audit-ready.
           </p>
         <div className="mkHeroCtas">
-          <Link className="mkBtn mkBtnPrimary mkBtnLg" href="/signup">
+          <Link className="aiButton aiButtonPrimary mkBtnLg" href="/signup">
             Start applying smarter
           </Link>
-            <Link className="mkBtn mkBtnGhost mkBtnLg" href="/#how-it-works">
+            <Link className="aiButton mkBtnLg" href="/#how-it-works">
               See how it works
             </Link>
           </div>

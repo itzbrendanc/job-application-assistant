@@ -10,6 +10,7 @@
   --accent: #6d5bff; /* electric indigo */
   --accent2: #b14cff; /* violet */
   --teal: #7fe7c4;
+  --cyan: #66e3ff;
   --danger: #ff6b6b;
   --shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
   --shadowSm: 0 18px 50px rgba(0, 0, 0, 0.28);
@@ -27,18 +28,110 @@ body {
   margin: 0;
   font-family: var(--font);
   color: var(--text);
-  background:
-    radial-gradient(900px 520px at 12% 8%, rgba(109, 91, 255, 0.28), transparent 55%),
-    radial-gradient(850px 560px at 84% 16%, rgba(177, 76, 255, 0.22), transparent 58%),
-    radial-gradient(760px 520px at 52% 88%, rgba(127, 231, 196, 0.10), transparent 58%),
-    radial-gradient(700px 420px at 52% 36%, rgba(255, 255, 255, 0.05), transparent 60%),
-    linear-gradient(180deg, #040611 0%, #0a0f22 52%, #050712 100%);
+  background: linear-gradient(180deg, #040611 0%, #0a0f22 52%, #050712 100%);
   min-height: 100vh;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* AI-native shell */
+.aiShell {
+  position: relative;
+}
+.aiShell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  background:
+    radial-gradient(900px 520px at 12% 8%, rgba(109, 91, 255, 0.28), transparent 55%),
+    radial-gradient(850px 560px at 84% 16%, rgba(177, 76, 255, 0.22), transparent 58%),
+    radial-gradient(740px 520px at 52% 88%, rgba(102, 227, 255, 0.10), transparent 58%),
+    radial-gradient(700px 420px at 52% 36%, rgba(255, 255, 255, 0.05), transparent 60%);
+  filter: saturate(115%);
+  opacity: 0.95;
+  animation: aiGlowShift 14s ease-in-out infinite alternate;
+}
+.aiShell::after {
+  content: "";
+  position: fixed;
+  inset: -1px;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  background-position: 0 0;
+  opacity: 0.10;
+  mask-image: radial-gradient(800px 520px at 50% 10%, rgba(0, 0, 0, 0.9), transparent 62%);
+}
+@keyframes aiGlowShift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(0, -12px, 0) scale(1.02);
+  }
+}
+
+/* Utilities */
+.aiGradientText {
+  background: linear-gradient(135deg, rgba(109, 91, 255, 1), rgba(177, 76, 255, 0.95), rgba(102, 227, 255, 0.9));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.aiGlow {
+  box-shadow: 0 28px 90px rgba(109, 91, 255, 0.16), 0 18px 70px rgba(102, 227, 255, 0.10);
+}
+.aiCard {
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.040)),
+    radial-gradient(420px 220px at 22% 12%, rgba(109, 91, 255, 0.10), transparent 64%),
+    radial-gradient(420px 240px at 78% 12%, rgba(102, 227, 255, 0.08), transparent 64%);
+  border-radius: 18px;
+  box-shadow: var(--shadowSm);
+}
+.aiButton {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+.aiButton:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+.aiButtonPrimary {
+  background: linear-gradient(135deg, rgba(109, 91, 255, 0.30), rgba(177, 76, 255, 0.14));
+  border-color: rgba(109, 91, 255, 0.44);
+  box-shadow: 0 26px 80px rgba(109, 91, 255, 0.18);
+}
+.aiInput {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--text);
+}
+.aiInput:focus {
+  outline: none;
+  border-color: rgba(109, 91, 255, 0.55);
+  box-shadow: 0 0 0 4px rgba(109, 91, 255, 0.12);
 }
 
 .container {
@@ -100,7 +193,9 @@ a {
 
 .card {
   border: 1px solid rgba(255, 255, 255, 0.10);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.045));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.045)),
+    radial-gradient(420px 220px at 22% 12%, rgba(109, 91, 255, 0.08), transparent 64%);
   border-radius: 18px;
   padding: 16px;
   box-shadow: var(--shadowSm);
@@ -819,6 +914,11 @@ select {
     radial-gradient(600px 320px at 18% 18%, rgba(109, 91, 255, 0.26), transparent 62%),
     radial-gradient(620px 340px at 84% 22%, rgba(177, 76, 255, 0.20), transparent 62%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.10));
+  animation: aiBrandPulse 10s ease-in-out infinite alternate;
+}
+@keyframes aiBrandPulse {
+  0% { filter: saturate(105%) brightness(1); }
+  100% { filter: saturate(125%) brightness(1.05); }
 }
 @media (min-width: 980px) {
   .authBrandPanel {

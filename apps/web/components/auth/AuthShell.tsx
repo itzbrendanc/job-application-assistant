@@ -15,7 +15,7 @@ export function AuthShell({
 }) {
   return (
     <div className="authWrap">
-      <div className="authShell">
+      <div className="authShell aiGlow">
         <section className="authBrandPanel" aria-label="Hirely brand panel">
           <div className="authTopRow">
             <HirelyLogo href="/" showTagline />
@@ -51,4 +51,3 @@ export function AuthShell({
     </div>
   );
 }
-
