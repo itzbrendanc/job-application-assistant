@@ -14,8 +14,8 @@
   --danger: #ff6b6b;
   --shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
   --shadowSm: 0 18px 50px rgba(0, 0, 0, 0.28);
-  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
-    "Segoe UI Emoji";
+  --font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Segoe UI,
+    Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
 * {
@@ -30,6 +30,11 @@ body {
   color: var(--text);
   background: linear-gradient(180deg, #040611 0%, #0a0f22 52%, #050712 100%);
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  font-kerning: normal;
+  font-variant-ligatures: contextual common-ligatures;
 }
 
 a {
@@ -163,9 +168,10 @@ a {
 }
 .jsH1 {
   margin: 10px 0 0;
-  font-size: 42px;
-  line-height: 1.05;
-  letter-spacing: -0.7px;
+  font-size: 44px;
+  line-height: 1.04;
+  letter-spacing: -0.9px;
+  font-weight: 880;
 }
 @media (max-width: 520px) {
   .jsH1 {
@@ -177,6 +183,7 @@ a {
   color: var(--muted);
   max-width: 52ch;
   line-height: 1.55;
+  letter-spacing: -0.1px;
 }
 .jsControls {
   display: grid;
@@ -207,7 +214,8 @@ a {
   padding: 10px 10px;
   border-radius: 999px;
   cursor: pointer;
-  font-weight: 760;
+  font-weight: 700;
+  letter-spacing: -0.1px;
   transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 .jsPill:hover {
@@ -321,8 +329,8 @@ a {
   align-items: center;
 }
 .jsPlatformName {
-  font-weight: 860;
-  letter-spacing: -0.2px;
+  font-weight: 820;
+  letter-spacing: -0.3px;
   font-size: 16px;
 }
 .jsSupport {
@@ -355,6 +363,7 @@ a {
   margin-top: 12px;
   color: rgba(255, 255, 255, 0.82);
   line-height: 1.45;
+  letter-spacing: -0.1px;
 }
 .jsOpenBtn {
   margin-top: 14px;
@@ -369,7 +378,8 @@ a {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
   color: rgba(177, 76, 255, 0.95);
-  font-weight: 780;
+  font-weight: 760;
+  letter-spacing: -0.1px;
   transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 .jsOpenBtn:hover {
@@ -513,6 +523,8 @@ a {
   padding: 10px 8px;
   border-radius: 12px;
   transition: color 180ms ease, background 180ms ease;
+  font-weight: 650;
+  letter-spacing: -0.1px;
 }
 .appNavLink:hover {
   color: rgba(255, 255, 255, 0.92);
@@ -886,10 +898,11 @@ select {
   font-size: 13px;
 }
 .mkH1 {
-  font-size: 48px;
-  line-height: 1.04;
+  font-size: 50px;
+  line-height: 1.03;
   margin: 14px 0 10px;
-  letter-spacing: -0.6px;
+  letter-spacing: -0.8px;
+  font-weight: 860;
 }
 @media (max-width: 520px) {
   .mkH1 {
