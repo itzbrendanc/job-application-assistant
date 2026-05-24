@@ -1036,6 +1036,80 @@ select {
   color: rgba(255, 255, 255, 0.88);
 }
 
+/* Marketing: Job Sites preview grid (homepage) */
+.mkJobSitesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (min-width: 860px) {
+  .mkJobSitesGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.mkJobSiteCard {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03)),
+    radial-gradient(320px 200px at 22% 12%, rgba(109, 91, 255, 0.12), transparent 64%);
+  box-shadow: var(--shadowSm);
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+.mkJobSiteCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(109, 91, 255, 0.40);
+  box-shadow: 0 28px 90px rgba(109, 91, 255, 0.12), var(--shadow);
+}
+.mkJobSiteLogo {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background:
+    radial-gradient(22px 22px at 30% 30%, rgba(109, 91, 255, 0.18), rgba(0, 0, 0, 0.18)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+}
+.mkJobSiteMeta {
+  display: grid;
+  gap: 6px;
+}
+.mkJobSiteName {
+  font-weight: 860;
+  letter-spacing: -0.2px;
+}
+.mkJobSiteBadge {
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(109, 91, 255, 0.38);
+  background: rgba(109, 91, 255, 0.14);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 12px;
+}
+.mkJobSiteBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(109, 91, 255, 0.40);
+  background: rgba(0, 0, 0, 0.22);
+  color: rgba(177, 76, 255, 0.95);
+  font-weight: 780;
+}
+.mkJobSiteBtn:hover {
+  background: rgba(109, 91, 255, 0.12);
+  border-color: rgba(109, 91, 255, 0.58);
+}
+
 .mkCTA {
   margin-top: 48px;
   padding: 54px 0;
